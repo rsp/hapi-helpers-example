@@ -25,6 +25,7 @@ The following example will walk you through using hapi to build a RESTful set of
     },
     "dependencies": {
         "hapi": "1.8.x",
+        "hapi-helpers": "0.1.x",
         "lout": "0.4.x",
         "handlebars": "1.0.x"
     },
@@ -59,18 +60,35 @@ In the _server.js_ code above a new instance of the hapi server is started using
 By registering the lout plugin, the [documentation generator](https://github.com/spumko/lout) will be enabled.  The documentation generator provides a set of pages that explain what endpoints are available and the requirements for those endpoints.  The documentation generator will use the validation rules you will create for each route to construct appropriate documentation pages under the _/docs_ path.
 
 [Hapi](https://github.com/spumko/hapi/) provides a function for adding a single route or an array of routes.  In this example we are adding an array of routes from a routes module, go ahead and create a _routes.js_ file, which will contain the route information and handlers.  When defining the routes we will also be specifying [validation requirements](http://spumko.github.io/resource/api/#hapi-types).  Therefore, at the top of the file require _hapi_ and assign its _Types_ property to a local variable like below.
+This version uses the [hapi-helpers](https://www.npmjs.com/package/hapi-helpers) module to simplify the routing.
+For the original version without hapi-helpers see: [hapi-example](https://github.com/geek/hapi-example).
 
 ```javascript
-var Types = require('hapi').types;
+var Types = require('hapi').types,
+    hh = require('hapi-helpers'),
+    get = hh.get, post = hh.post;
 ```
 
 For this example three routes will be created.  Below is the code you should use to add the routes, go ahead and add the code to your _routes.js_ file.
 
 ```javascript
 module.exports = [
-    { method: 'GET', path: '/products', config: { handler: getProducts, validate: { query: { name: Types.String() } } } },
-    { method: 'GET', path: '/products/{id}', config: { handler: getProduct } },
-    { method: 'POST', path: '/products', config: { handler: addProduct, payload: 'parse', validate: { payload: { name: Types.String().required().min(3) } } } }
+    get('/products', getProducts, {
+        validate: {
+            query: {
+                name: Types.String()
+            }
+        }
+    }),
+    get('/products/{id}', getProduct),
+    post('/products', addProduct, {
+        payload: 'parse',
+        validate: {
+            payload: {
+                name: Types.String().required().min(3)
+            }
+        }
+    })
 ];
 ```
 
