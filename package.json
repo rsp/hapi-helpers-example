@@ -1,14 +1,15 @@
 {
-    "name": "ProductsAPI",
-    "version": "0.0.2",
-    "main": "server",
-    "engines": {
-        "node": ">=0.10.5"
-    },
-    "dependencies": {
-        "hapi": "1.8.x",
-        "lout": "0.4.x",
-        "handlebars": "1.0.x"
-    },
-    "private": "true"
+  "name": "hapi-helpers-example",
+  "version": "0.0.2",
+  "main": "server",
+  "engines": {
+    "node": ">=0.10.5"
+  },
+  "dependencies": {
+    "handlebars": "1.0.x",
+    "hapi": "1.8.x",
+    "hapi-helpers": "^0.1.0",
+    "lout": "0.4.x"
+  },
+  "private": "true"
 }

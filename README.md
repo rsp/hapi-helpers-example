@@ -1,3 +1,11 @@
+hapi-helpers-example
+====================
+hapi-helpers-example is a fork of
+[hapi-example](https://github.com/geek/hapi-example)
+by [Wyatt Preul](https://github.com/geek).
+It uses [hapi-helpers](https://github.com/rsp/node-hapi-helpers)
+to simplify the routes definition.
+
 **Making an API happy with hapi**
 
 [Hapi](https://github.com/spumko/hapi) is a framework for rapidly building RESTful web services.  Whether you are building a very simple set of RESTful services or a large scale, cache heavy, and secure set of services, [hapi](https://github.com/spumko/hapi/) has you covered.  [Hapi](https://github.com/spumko/hapi/) will help get your server developed quickly with its wide range of configurable options.

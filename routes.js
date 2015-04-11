@@ -1,9 +1,12 @@
-var Types = require('hapi').types;
+var Types = require('hapi').types,
+    hh = require('hapi-helpers'),
+    get = hh.get,
+    post = hh.post;
 
 module.exports = [
-    { method: 'GET', path: '/products', config: { handler: getProducts, validate: { query: { name: Types.String() } } } },
-    { method: 'GET', path: '/products/{id}', config: { handler: getProduct } },
-    { method: 'POST', path: '/products', config: { handler: addProduct, payload: 'parse', validate: { payload: { name: Types.String().required().min(3) } } } }
+    get( '/products', getProducts, { validate: { query: { name: Types.String() } } } ),
+    get( '/products/{id}', getProduct ),
+    post( '/products', addProduct, { payload: 'parse', validate: { payload: { name: Types.String().required().min(3) } } } )
 ];
 
 var products = [{
